@@ -1,0 +1,1024 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<%- include head.ejs %>
+<body>
+
+<!-- Add your site or application content here -->
+
+<!-- pre loader area start -->
+<%- include preloader.ejs %>
+<!-- pre loader area end -->
+
+<!-- back to top start -->
+<%- include back_to_top.ejs %>
+<!-- back to top end -->
+
+<!-- header area start -->
+<%- include navigation_bar.ejs %>
+
+<main>
+
+        <section class="page__title-area pt-120 pb-90">
+            <div class="page__title-shape">
+                <img class="page-title-shape-5 d-none d-sm-block" src="/images/page-title/page-title-shape-1.png" alt="">
+                <img class="page-title-shape-6" src="/images/page-title/page-title-shape-6.png" alt="">
+                <img class="page-title-shape-7" src="/images/page-title/page-title-shape-4.png" alt="">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-8 col-xl-8 col-lg-8">
+                        <div class="course__wrapper">
+                            <div class="page__title-content mb-25">
+                                <div class="page__title-breadcrumb">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <% if( isStudent=='true' ) { %>
+                                                <li class="breadcrumb-item"><a href="/student/user/<%= userInfo[0] %>/">Home</a></li>
+                                                <li class="breadcrumb-item"><a href="/student/user/<%= userInfo[0] %>/courses">Courses</a></li>
+                                            <% } else { %>
+                                                <li class="breadcrumb-item"><a href="/instructor/user/<%= userInfo[0] %>/">Home</a></li>
+                                                <li class="breadcrumb-item"><a href="/instructor/user/<%= userInfo[0] %>/courses">Courses</a></li>
+                                            <% } %>
+
+                                            <li class="breadcrumb-item active" aria-current="page"><%=course[9] %></li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                                <span class="page__title-pre"><%=course[14] %></span>
+                                <h5 class="page__title-3"><%=course[9] %></h5>
+                            </div>
+                            <div class="course__meta-2 d-sm-flex mb-30">
+                                <div class="course__teacher-3 d-flex align-items-center mr-70 mb-30">
+                                    <div class="course__teacher-thumb-3 mr-15">
+                                        <img src="/images/course/teacher/teacher-1.jpg" alt="">
+                                    </div>
+                                    <div class="course__teacher-info-3">
+                                        <h5>Teacher</h5>
+                                        <p><a href="#"><%=teachers[0][0] %></a></p>
+                                    </div>
+                                </div>
+
+                                <div class="course__rating-2 mb-30">
+                                    <h5>Review:</h5>
+                                    <div class="course__rating-inner d-flex align-items-center">
+                                        <ul>
+                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                        </ul>
+                                        <p><%=course[15] %></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course__tab-2 mb-45">
+                                <ul class="nav nav-tabs" id="courseTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="true"> <i class="icon_ribbon_alt"></i> <span>Description</span> </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link " id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum" type="button" role="tab" aria-controls="curriculum" aria-selected="false"> <i class="icon_book_alt"></i> <span>Curriculum</span> </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button" role="tab" aria-controls="review" aria-selected="false"> <i class="icon_star_alt"></i> <span>Reviews</span> </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="member-tab" data-bs-toggle="tab" data-bs-target="#member" type="button" role="tab" aria-controls="member" aria-selected="false"> <i class="fal fa-user"></i> <span>Members</span> </button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="course__tab-content mb-95">
+                                <div class="tab-content" id="courseTabContent">
+                                    <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+                                        <div class="course__description">
+                                            <h3>Course Overview</h3>
+                                            <p><%=course[10] %></p>
+
+                                            <div class="course__description-list mb-45">
+                                                <div class="header__btn ml-20 d-none d-sm-block">
+                                                    <a href="/student/user/<%=userInfo[0]%>/course-inside-view/<%=course[0]%>/Grades" class="e-btn">
+                                                    Show Grades
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
+                                        <div class="course__curriculum">
+
+                                            <%for(let topic of topics){%>
+
+                                            <div class="accordion" id="course__accordion">
+                                                <div class="accordion-item mb-50">
+                                                    <h2 class="accordion-header" id="week-01">
+                                                        <a href="/student/user/<%=userInfo[0]%>/course-inside-view/<%=course[0]%>/<%=topic[0]%>" class="link">
+                                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#week-01-content" aria-expanded="true" aria-controls="week-01-content">
+                                                                Topic <%=topic[4]%> : <%=topic[1]%>
+                                                            </button>
+                                                        </a>
+                                                    </h2>
+                                                </div>
+                                            </div>
+                                            <% } %>
+
+                                            <br>
+                                            <br>
+
+                                            <%if(weekView =='true'){%>
+                                            <div class="create-new others pull-right" id="week1">
+                                                <div class="info">
+                                                    <h2>Topic
+                                                        <%=thisModule[4]%> : <%=thisModule[1]%>
+                                                    </h2>
+                                                    <label style="margin-bottom: 0;"><h5>Description : </h5></label>
+
+                                                    <form>
+                                                        <input placeholder="TOPIC <%=thisModule[4]%>" name="week_description" id="week_description" type="text" style="width: 60%; margin-top: 0;">
+                                                        <button type="submit" class="e-btn">Save</button>
+                                                    </form>
+
+                                                </div>
+
+
+                                                <!-- week lesson-->
+                                                <div class="course-table ">
+
+                                                    <table class="table ">
+                                                        <thead>
+
+                                                        <tr>
+                                                            <th>Type</th>
+                                                            <th>Content Title</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+
+
+                                                        <%for(content of VideoContents){%>
+
+                                                            <% let isOk='false' ; for(let completedContent of completedContents){
+                                                                if(completedContent[1]==content[0]) { isOk='true' ;
+                                                                    break; } } %>
+                                                            <% if(isOk=='false' ) {%>
+                                                            <tr>
+                                                                <td><i class="fa fa-play-circle"></i></td>
+                                                                <td>
+                                                                    <a href="/student/user/<%=userInfo[0]%>/course-inside-view/<%=course[0]%>/<%=thisModule[0]%>/video/<%=content[0]%>">
+                                                                        <%=content[2]%>
+                                                                    </a>
+                                                                </td>
+
+                                                                <td><i class="fa fa-close "></i></td>
+                                                            </tr>
+                                                            <% } else { %>
+                                                            <tr style="background-color:rgb(196, 228, 196);">
+                                                                <td><i class="fa fa-play-circle"></i></td>
+                                                                <td>
+                                                                    <a href="/student/user/<%=userInfo[0]%>/course-inside-view/<%=course[0]%>/<%=thisModule[0]%>/video/<%=content[0]%>">
+                                                                        <%=content[2]%>
+                                                                    </a>
+                                                                </td>
+
+                                                                <td><i class="fa fa-check "></i></td>
+                                                            </tr>
+                                                            <% } %>
+                                                        <%}%>
+                                                        <%if(quizContentExistence!=0){%>
+                                                            <!-- for loop -->
+                                                            <% let isOk2='false' ; for(let completedContent of
+                                                                    completedContents){
+                                                                if(completedContent[1]==QuizContent[0])
+                                                                { isOk2='true' ; break; } } %>
+                                                            <% if(isOk2=='false' ) {%>
+
+                                                            <tr>
+                                                                <td><i class="fa fa-question-circle"></i></td>
+                                                                <td> <a href="/student/user/<%=userInfo[0]%>/course-inside-view/<%=course[0]%>/<%=thisModule[0]%>/quiz/1">
+                                                                        Quiz Based on this module</a></td>
+
+                                                                <td><i class="fa fa-close"></i></td>
+                                                            </tr>
+                                                            <% } else { %>
+                                                            <tr style="background-color:rgb(196, 228, 196);">
+                                                                <td><i class="fa fa-question-circle"></i>
+                                                                </td>
+                                                                <td> <a href="/student/user/<%=userInfo[0]%>/course-inside-view/<%=course[0]%>/<%=thisModule[0]%>/quiz/1">
+                                                                        Quiz Based on this module</a></td>
+
+                                                                <td><i class="fa fa-check"></i></td>
+                                                            </tr>
+                                                            <% } %>
+                                                        <%}%>
+
+                                                        </tbody>
+
+                                                    </table>
+                                                </div>
+
+
+                                                <!-- week lesson ends -->
+
+                                            </div>
+                                            <%}%>
+                                            <!-- add new ends -->
+
+                                        </div>
+                                    </div>
+
+
+                                    <% if( videoView=='true' ) {%>
+                                    <div class="videos others" id="videos">
+                                        <div class="video_container">
+                                            <div class="video">
+
+
+                                                <h2 style="color: #041562;">Video Topic</h2>
+
+                                                <div class="info">
+                                                    <div class="discuss">
+                                                        <i class="fas fa-comments"></i> Discuss
+                                                    </div>
+                                                </div>
+
+                                                <video width="720" height="500" controls>
+                                                    <source src="/videos/<%=video_content[1]%>" type="video/mp4">
+                                                    Your browser does not support the video tag.
+                                                </video>
+                                                <br>
+                                                <a class="btn btn-success" href="/student/user/<%=userInfo[0]%>/course-inside-view/<%=course[0]%>/<%=thisModule[0]%>/completed/<%= video_content[0] %> ">Back
+                                                    to module</a>
+                                                <br>
+                                                <br>
+                                            </div>
+                                            <br>
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <% } %>
+
+                                    <% if( quizView=='true' ) { %>
+
+                                        <div class="container quizs others" id="quizs">
+                                            <div class="row quiz_container">
+                                                <div id="course-content" class="col-md-12">
+                                                    <div class="course-description">
+                                                        <br>
+
+                                                        <br>
+
+                                                        <h3 class="course-title">Quiz - Question
+                                                            <%= quiz_serial %>
+                                                        </h3>
+                                                        <div class="quiz-wrapper">
+
+                                                            <!--Q-->
+                                                            <h3>
+                                                                <%=question[2]%>
+                                                            </h3>
+                                                            <!--Q-->
+
+                                                            <div class="row" style="margin-bottom:2rem;">
+                                                                <div class="col-md-12">
+
+                                                                    <div class="panel panel-primary">
+
+                                                                        <% if(showAnswer=='false' ) { %>
+                                                                        <form method="POST" action="/student/user/<%=userInfo[0]%>/course-inside-view/<%=course[0]%>/<%=thisModule[0]%>/quiz/<%= quiz_serial %> ">
+                                                                            <!-- options -->
+                                                                            <div class="panel-body">
+
+                                                                                <div style="width:100%;  margin-bottom: 5px; border-radius:10px;">
+                                                                                    <div class="radio">
+                                                                                        <label>
+                                                                                            <input name="option1"
+                                                                                                   id="option1"
+                                                                                                   value="option1"
+                                                                                                   type="radio">
+                                                                                            <%= question[3] %>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div style="width:100%;  margin-bottom: 5px; border-radius:10px;">
+                                                                                    <div class="radio">
+                                                                                        <label>
+                                                                                            <input name="option2"
+                                                                                                   id="option2"
+                                                                                                   value="option2"
+                                                                                                   type="radio">
+                                                                                            <%= question[4] %>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div style="width:100%;  margin-bottom: 5px; ">
+                                                                                    <div class="radio">
+                                                                                        <label>
+                                                                                            <input name="option3"
+                                                                                                   id="option3"
+                                                                                                   value="option3"
+                                                                                                   type="radio">
+                                                                                            <%= question[5] %>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div style="width:100%;  margin-bottom: 5px;">
+                                                                                    <div class="radio">
+                                                                                        <label>
+                                                                                            <input name="option4"
+                                                                                                   id="option4"
+                                                                                                   value="option4"
+                                                                                                   type="radio">
+                                                                                            <%= question[6] %>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!--options ends-->
+
+
+                                                                            <!--submission-->
+                                                                            <button type="submit" class="btn btn-primary " role="button">Confirm</button>
+                                                                        </form>
+                                                                        <% } else { %>
+                                                                            <div class="panel-body">
+
+
+                                                                                <!-- option 1 -->
+                                                                                <% if( given_ans !=1 ) { %>
+                                                                                    <div
+                                                                                            style="width:100%;  margin-bottom: 5px; ">
+                                                                                        <div class="radio">
+                                                                                            <label>
+                                                                                                <input name="option1"
+                                                                                                       id="option1"
+                                                                                                       value="option1"
+                                                                                                       type="radio">
+                                                                                                <%= question[3] %>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <% } else { %>
+                                                                                    <% if( question[7]==1 ){ %>
+                                                                                        <div
+                                                                                                style="width:100%; background-color:rgb(162, 221, 162) ; margin-bottom: 5px; border-radius:10px;">
+                                                                                            <div class="radio">
+                                                                                                <label>
+                                                                                                    <input
+                                                                                                            name="option1"
+                                                                                                            id="option1"
+                                                                                                            value="option1"
+                                                                                                            type="radio">
+                                                                                                    <%= question[3]
+                                                                                                    %>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <% } else { %>
+                                                                                        <div
+                                                                                                style="width:100%; background-color: rgb(236, 156, 156); margin-bottom: 5px; border-radius:10px;">
+                                                                                            <div class="radio">
+                                                                                                <label>
+                                                                                                    <input
+                                                                                                            name="option1"
+                                                                                                            id="option1"
+                                                                                                            value="option1"
+                                                                                                            type="radio">
+                                                                                                    <%= question[3]
+                                                                                                    %>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <% } %>
+                                                                                <% } %>
+                                                                                <!-- option 1 ends -->
+                                                                                <!-- option 2 -->
+                                                                                <% if( given_ans
+                                                                                        !=2 ) { %>
+                                                                                    <div
+                                                                                            style="width:100%;  margin-bottom: 5px; ">
+                                                                                        <div
+                                                                                                class="radio">
+                                                                                            <label>
+                                                                                                <input
+                                                                                                        name="option2"
+                                                                                                        id="option2"
+                                                                                                        value="option2"
+                                                                                                        type="radio">
+                                                                                                <%= question[4]
+                                                                                                %>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <% } else {
+                                                                                %>
+                                                                                    <% if(
+                                                                                            question[7]==2
+                                                                                    ){
+                                                                                    %>
+                                                                                        <div
+                                                                                                style="width:100%; border-color:rgb(162, 221, 162) ; margin-bottom: 5px; border-radius:10px;">
+                                                                                            <div
+                                                                                                    class="radio">
+                                                                                                <label>
+                                                                                                    <input
+                                                                                                            name="option2"
+                                                                                                            id="option2"
+                                                                                                            value="option2"
+                                                                                                            type="radio">
+                                                                                                    <%= question[4]
+                                                                                                    %>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <% } else
+                                                                                    {
+                                                                                    %>
+                                                                                        <div
+                                                                                                style="width:100%; background-color: rgb(236, 156, 156); margin-bottom: 5px; border-radius:10px;">
+                                                                                            <div
+                                                                                                    class="radio">
+                                                                                                <label>
+                                                                                                    <input
+                                                                                                            name="option2"
+                                                                                                            id="option2"
+                                                                                                            value="option2"
+                                                                                                            type="radio">
+                                                                                                    <%= question[4]
+                                                                                                    %>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <% }
+                                                                                    %>
+                                                                                <% }
+                                                                                %>
+                                                                                <!-- option 2 ends -->
+
+
+                                                                                <!-- option 3 -->
+                                                                                <% if(
+                                                                                        given_ans
+                                                                                        !=3
+                                                                                )
+                                                                                {
+                                                                                %>
+                                                                                    <div
+                                                                                            style="width:100%;  margin-bottom: 5px; ">
+                                                                                        <div
+                                                                                                class="radio">
+                                                                                            <label>
+                                                                                                <input
+                                                                                                        name="option3"
+                                                                                                        id="option3"
+                                                                                                        value="option3"
+                                                                                                        type="radio">
+                                                                                                <%= question[5]
+                                                                                                %>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <% } else
+                                                                                {
+                                                                                %>
+                                                                                    <% if(
+                                                                                            question[7]==3
+                                                                                    ){
+                                                                                    %>
+                                                                                        <div
+                                                                                                style="width:100%; border-color:rgb(162, 221, 162) ; margin-bottom: 5px; border-radius:10px;">
+                                                                                            <div
+                                                                                                    class="radio">
+                                                                                                <label>
+                                                                                                    <input
+                                                                                                            name="option3"
+                                                                                                            id="option3"
+                                                                                                            value="option3"
+                                                                                                            type="radio">
+                                                                                                    <%= question[5]
+                                                                                                    %>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <% } else
+                                                                                    {
+                                                                                    %>
+                                                                                        <div
+                                                                                                style="width:100%; background-color: rgb(236, 156, 156); margin-bottom: 5px; border-radius:10px;">
+                                                                                            <div
+                                                                                                    class="radio">
+                                                                                                <label>
+                                                                                                    <input
+                                                                                                            name="option3"
+                                                                                                            id="option3"
+                                                                                                            value="option3"
+                                                                                                            type="radio">
+                                                                                                    <%= question[5]
+                                                                                                    %>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <% }
+                                                                                    %>
+                                                                                <% }
+                                                                                %>
+                                                                                <!-- option 3 ends -->
+
+                                                                                <!-- option 4 -->
+                                                                                <% if(
+                                                                                        given_ans
+                                                                                        !=4
+                                                                                )
+                                                                                {
+                                                                                %>
+                                                                                    <div
+                                                                                            style="width:100%;  margin-bottom: 5px; ">
+                                                                                        <div
+                                                                                                class="radio">
+                                                                                            <label>
+                                                                                                <input
+                                                                                                        name="option4"
+                                                                                                        id="option4"
+                                                                                                        value="option4"
+                                                                                                        type="radio">
+                                                                                                <%= question[6]
+                                                                                                %>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                <% } else
+                                                                                {
+                                                                                %>
+                                                                                    <% if(
+                                                                                            question[7]==4
+                                                                                    ){
+                                                                                    %>
+                                                                                        <div
+                                                                                                style="width:100%; border-color:rgb(162, 221, 162) ; margin-bottom: 5px; border-radius:10px;">
+                                                                                            <div
+                                                                                                    class="radio">
+                                                                                                <label>
+                                                                                                    <input
+                                                                                                            name="option4"
+                                                                                                            id="option4"
+                                                                                                            value="option4"
+                                                                                                            type="radio">
+                                                                                                    <%= question[6]
+                                                                                                    %>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <% } else
+                                                                                    {
+                                                                                    %>
+                                                                                        <div
+                                                                                                style="width:100%; background-color: rgb(236, 156, 156); margin-bottom: 5px; border-radius:10px;">
+                                                                                            <div
+                                                                                                    class="radio">
+                                                                                                <label>
+                                                                                                    <input
+                                                                                                            name="option4"
+                                                                                                            id="option4"
+                                                                                                            value="option4"
+                                                                                                            type="radio">
+                                                                                                    <%= question[6]
+                                                                                                    %>
+                                                                                                </label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    <% }
+                                                                                    %>
+                                                                                <% }
+                                                                                %>
+                                                                                <!-- option 4 ends -->
+
+                                                                            </div>
+
+                                                                            <h4> Correct Answer : <%= question[7] %></h4>
+
+                                                                            <div class="row">
+
+                                                                                <div class="col-md-12">
+
+                                                                                    <% let serial=+quiz_serial + +1; %>
+
+                                                                                    <% if( serial <=total_ques) {%>
+                                                                                    <a href="/student/user/<%=userInfo[0]%>/course-inside-view/<%=course[0]%>/<%=thisModule[0]%>/quiz/<%= serial %> "
+                                                                                       class="btn btn-default btn-block">Next
+                                                                                        Question<i
+                                                                                                class="fas fa-chevron-right"></i></a>
+                                                                                    <% } else {%>
+                                                                                    <a href="/student/user/<%=userInfo[0]%>/course-inside-view/<%=course[0]%>/<%=thisModule[0]%>/completed/<%= question[0] %> "
+                                                                                       class="btn btn-success btn-block">Back
+                                                                                        to Module
+                                                                                    </a>
+                                                                                    <% } %>
+                                                                                </div>
+                                                                            </div>
+                                                                        <% } %>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    <% } %>
+
+                                    <% if( gradeView=='true' ) { %>
+                                    <div class="week others pull-right" id="grade">
+                                        <div class="info">
+
+
+                                            <h2>Grades </h2>
+
+                                        </div>
+                                        <%if(gradeExistence==false){%>
+                                            <div class="quizinfo">
+                                                <h2>You have not participated in any quiz yet </h2>
+                                            </div>
+                                        <%}else{%>
+                                            <!-- week lesson-->
+                                            <div class="course-table ">
+
+                                                <table class="table ">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Overall Total Grades</th>
+                                                        <th>Marks</th>
+                                                    </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                    <tr>
+
+
+                                                        <td>
+                                                            Whole Course
+
+                                                        </td>
+                                                        <td>
+                                                            <%=grades[0][0]%>
+                                                        </td>
+
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        <%}%>
+                                    </div>
+                                    <% } %>
+
+                                    <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                                        <div class="course__review">
+                                            <h3>Reviews</h3>
+
+
+                                            <div class="course__review-rating mb-50">
+                                                <div class="row g-0">
+                                                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                                        <div class="course__review-rating-info grey-bg text-center">
+                                                            <h5>5</h5>
+                                                            <ul>
+                                                                <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                            </ul>
+                                                            <p>4 Ratings</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-8 col-xl-8 col-lg-8 col-md-8 col-sm-8">
+                                                        <div class="course__review-details grey-bg">
+                                                            <h5>Detailed Rating</h5>
+                                                            <div class="course__review-content mb-20">
+                                                                <div class="course__review-item d-flex align-items-center justify-content-between">
+                                                                    <div class="course__review-text">
+                                                                        <span>5 stars</span>
+                                                                    </div>
+                                                                    <div class="course__review-progress">
+                                                                        <div class="single-progress" data-width="100%"></div>
+                                                                    </div>
+                                                                    <div class="course__review-percent">
+                                                                        <h5>100%</h5>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="course__review-item d-flex align-items-center justify-content-between">
+                                                                    <div class="course__review-text">
+                                                                        <span>4 stars</span>
+                                                                    </div>
+                                                                    <div class="course__review-progress">
+                                                                        <div class="single-progress" data-width="30%"></div>
+                                                                    </div>
+                                                                    <div class="course__review-percent">
+                                                                        <h5>30%</h5>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="course__review-item d-flex align-items-center justify-content-between">
+                                                                    <div class="course__review-text">
+                                                                        <span>3 stars</span>
+                                                                    </div>
+                                                                    <div class="course__review-progress">
+                                                                        <div class="single-progress" data-width="0%"></div>
+                                                                    </div>
+                                                                    <div class="course__review-percent">
+                                                                        <h5>0%</h5>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="course__review-item d-flex align-items-center justify-content-between">
+                                                                    <div class="course__review-text">
+                                                                        <span>2 stars</span>
+                                                                    </div>
+                                                                    <div class="course__review-progress">
+                                                                        <div class="single-progress" data-width="0%"></div>
+                                                                    </div>
+                                                                    <div class="course__review-percent">
+                                                                        <h5>0%</h5>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="course__review-item d-flex align-items-center justify-content-between">
+                                                                    <div class="course__review-text">
+                                                                        <span>1 stars</span>
+                                                                    </div>
+                                                                    <div class="course__review-progress">
+                                                                        <div class="single-progress" data-width="0%"></div>
+                                                                    </div>
+                                                                    <div class="course__review-percent">
+                                                                        <h5>0%</h5>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="course__comment mb-75">
+                                                <h3><%=reviews.length%> Comments</h3>
+
+                                                <%for(let review of reviews){%>
+                                                <ul>
+                                                    <li>
+                                                        <div class="course__comment-box ">
+                                                            <div class="course__comment-thumb float-start">
+                                                                <img src="/images/course/comment/course-comment-1.jpg" alt="">
+                                                            </div>
+                                                            <div class="course__comment-content">
+                                                                <div class="course__comment-wrapper ml-70 fix">
+                                                                    <div class="course__comment-info float-start">
+                                                                        <h4><%=review[2]%></h4>
+                                                                        <span><%=review[3]%></span>
+                                                                    </div>
+                                                                    <div class="course__comment-rating float-start float-sm-end">
+                                                                        <ul>
+                                                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                            <li><a href="#" class="no-rating"> <i class="icon_star"></i> </a></li>
+                                                                        </ul>
+                                                                        <h5><%= review[1]%></h5>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="course__comment-text ml-70">
+                                                                    <p><%=review[0]%></p>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <% }%>
+                                            </div>
+
+                                            <div class="course__form">
+                                                <h3>Write a Review</h3>
+                                                <div class="course__form-inner">
+                                                    <form method="post" action="/student/user/<%= userInfo[0] %>/<%=course[0]%>/Review">
+                                                        <div class="row">
+
+                                                            <div class="col-xxl-12">
+                                                                <div class="course__form-input">
+                                                                    <input type="text" id="rating" name="rating"  placeholder="Give Rating">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-xxl-12">
+                                                                <div class="course__form-input">
+                                                                    <div class="course__form-rating">
+                                                                        <span>Rating : </span>
+                                                                        <ul>
+                                                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                            <li><a href="#"> <i class="icon_star"></i> </a></li>
+                                                                            <li><a href="#" class="no-rating" > <i class="icon_star"></i> </a></li>
+                                                                            <li><a href="#" class="no-rating" > <i class="icon_star"></i> </a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <textarea id="review" name="review" placeholder="Review Summary"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-xxl-12">
+                                                                <div class="course__form-btn mt-10 mb-55">
+                                                                    <button type="submit" class="e-btn">Submit Review</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="member" role="tabpanel" aria-labelledby="member-tab">
+                                        <div class="course__member mb-45">
+
+                                            <%for(let member of members){%>
+
+                                            <div class="course__member-item">
+                                                <div class="row align-items-center">
+                                                    <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-6">
+                                                        <div class="course__member-thumb d-flex align-items-center">
+                                                            <img src="/images/course/instructor/course-instructor-1.jpg" alt="">
+                                                            <div class="course__member-name ml-20">
+                                                                <h5><%=member[0]%></h5>
+                                                                <span>Student</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4">
+                                                        <div class="course__member-info pl-45">
+                                                            <h5>Mail</h5>
+                                                            <span><%=member[1]%></span>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+<%}%>
+
+                                        </div>
+                                    </div>
+                                    <div class="course__share">
+                                        <h3>Share :</h3>
+                                        <ul>
+                                            <li><a href="#" class="fb" ><i class="social_facebook"></i></a></li>
+                                            <li><a href="#" class="tw" ><i class="social_twitter"></i></a></li>
+                                            <li><a href="#" class="pin" ><i class="social_pinterest"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- page title area end -->
+
+
+</main>
+
+<!-- footer area start -->
+<footer>
+    <div class="footer__area footer-bg">
+        <div class="footer__top pt-90 pb-40">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="footer__widget mb-50">
+                            <div class="footer__widget-head mb-22">
+                                <div class="footer__logo">
+                                    <a href="index.html">
+                                        <img src="/images/logo/logo-2.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="footer__widget-body">
+                                <p>Great lesson ideas and lesson plans for ESL teachers! Educators can customize lesson plans to best.</p>
+
+                                <div class="footer__social">
+                                    <ul>
+                                        <li><a href="#"><i class="social_facebook"></i></a></li>
+                                        <li><a href="#" class="tw"><i class="social_twitter"></i></a></li>
+                                        <li><a href="#" class="pin"><i class="social_pinterest"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 offset-xxl-1 col-xl-2 offset-xl-1 col-lg-3 offset-lg-0 col-md-2 offset-md-1 col-sm-5 offset-sm-1">
+                        <div class="footer__widget mb-50">
+                            <div class="footer__widget-head mb-22">
+                                <h3 class="footer__widget-title">Company</h3>
+                            </div>
+                            <div class="footer__widget-body">
+                                <div class="footer__link">
+                                    <ul>
+                                        <li><a href="#">About</a></li>
+                                        <li><a href="#">Courses</a></li>
+                                        <li><a href="#">Events</a></li>
+                                        <li><a href="#">Instructor</a></li>
+                                        <li><a href="#">Career</a></li>
+                                        <li><a href="#">Become a Teacher</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-2 col-xl-2 col-lg-2 offset-lg-0 col-md-3 offset-md-1 col-sm-6">
+                        <div class="footer__widget mb-50">
+                            <div class="footer__widget-head mb-22">
+                                <h3 class="footer__widget-title">Platform</h3>
+                            </div>
+                            <div class="footer__widget-body">
+                                <div class="footer__link">
+                                    <ul>
+                                        <li><a href="#">Browse Library</a></li>
+                                        <li><a href="#">Library</a></li>
+                                        <li><a href="#">Partners</a></li>
+                                        <li><a href="#">News & Blogs</a></li>
+                                        <li><a href="#">FAQs</a></li>
+                                        <li><a href="#">Tutorials</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-5 col-sm-6">
+                        <div class="footer__widget footer__pl-70 mb-50">
+                            <div class="footer__widget-head mb-22">
+                                <h3 class="footer__widget-title">Subscribe</h3>
+                            </div>
+                            <div class="footer__widget-body">
+                                <div class="footer__subscribe">
+                                    <form action="#">
+                                        <div class="footer__subscribe-input mb-15">
+                                            <input type="email" placeholder="Your email address">
+                                            <button type="submit">
+                                                <i class="far fa-arrow-right"></i>
+                                                <i class="far fa-arrow-right"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <p>Get the latest news and updates right at your inbox.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="footer__copyright text-center">
+                            <p>© 2022 Shikho, All Rights Reserved. Design By <a href="index.html">Shikho team</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer area end -->
+<!-- JS here -->
+<script src="/javascripts/vendor/jquery-3.5.1.min.js"></script>
+<script src="/javascripts/vendor/waypoints.min.js"></script>
+<script src="/javascripts/bootstrap.bundle.min.js"></script>
+<script src="/javascripts/jquery.meanmenu.js"></script>
+<script src="/javascripts/swiper-bundle.min.js"></script>
+<script src="/javascripts/owl.carousel.min.js"></script>
+<script src="/javascripts/jquery.fancybox.min.js"></script>
+<script src="/javascripts/isotope.pkgd.min.js"></script>
+<script src="/javascripts/parallax.min.js"></script>
+<script src="/javascripts/backToTop.js"></script>
+<script src="/javascripts/jquery.counterup.min.js"></script>
+<script src="/javascripts/ajax-form.js"></script>
+<script src="/javascripts/wow.min.js"></script>
+<script src="/javascripts/imagesloaded.pkgd.min.js"></script>
+<script src="/javascripts/main.js"></script>
+</body>
+</html>
+
