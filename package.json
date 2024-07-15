@@ -1,0 +1,43 @@
+{
+  "name": "shikho",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "async": "^3.2.4",
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "*",
+    "cjs": "^0.0.11",
+    "connect-flash": "^0.1.1",
+    "constants": "^0.0.2",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~1.0.0",
+    "express": "~4.16.1",
+    "express-fileupload": "^1.4.0",
+    "express-handlebars": "^6.0.6",
+    "express-messages": "*",
+    "express-promise-router": "^4.1.1",
+    "express-session": "*",
+    "express-validator": "^5.3.1",
+    "expressjs": "^1.0.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "line-reader-sync": "^0.1.0",
+    "mongoose": "^6.5.1",
+    "morgan": "~1.9.1",
+    "multer": "*",
+    "nodemailer": "^6.7.8",
+    "oracledb": "*",
+    "passport": "^0.6.0",
+    "passport-http": "*",
+    "passport-local": "*"
+  },
+  "devDependencies": {
+    "multer": "^1.4.5-lts.1",
+    "nodemailer-sendgrid-transport": "^0.2.0"
+  }
+}
